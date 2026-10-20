@@ -1,0 +1,21 @@
+# muestra de graphql para revisar el resaltado de dark dev
+schema { query: Query }
+
+"""Un color de la paleta."""
+type Slot implements Node @key(fields: "id") {
+  id: ID!
+  name: String!
+  value: Int = 15658734
+  tags(first: Int = 10): [String!]!
+}
+
+enum Mode { DARK MONO }
+
+query GetSlot($id: ID!, $full: Boolean = false) {
+  slot(id: $id) @include(if: $full) {
+    ...SlotFields
+    name
+  }
+}
+
+fragment SlotFields on Slot { id name value }

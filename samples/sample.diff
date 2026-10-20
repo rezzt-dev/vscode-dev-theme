@@ -1,0 +1,9 @@
+diff --git a/src/palette.mjs b/src/palette.mjs
+index 3f2a1b0..9c8d7e6 100644
+--- a/src/palette.mjs
++++ b/src/palette.mjs
+@@ -10,7 +10,7 @@ export const slots = {
+   appBackground: '#080808',
+-  textPrimary: '#F5F5F5',
++  textPrimary: '#EEEEEE',
+   textMuted: '#585858',

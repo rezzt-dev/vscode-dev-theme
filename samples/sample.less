@@ -1,0 +1,16 @@
+// muestra de less para revisar el resaltado de dark dev
+@import 'palette';
+@ink: #eeeeee;
+@steps: 5, 10, 20;
+
+.ramp(@step; @base: @ink) {
+  color: fade(@base, @step * 1%);
+}
+
+.slot {
+  .ramp(50);
+  &:hover { color: darken(@ink, 10%); }
+  &-title { font: 600 1rem/1.5 'Space Grotesk', sans-serif; }
+  @media (min-width: 640px) { display: grid !important; }
+  .mixin() when (iscolor(@ink)) { width: ~"calc(100% - 4px)"; }
+}

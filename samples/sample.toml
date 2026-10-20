@@ -1,0 +1,18 @@
+# muestra de toml para revisar el resaltado de dark dev
+title = "dark dev"
+
+[package]
+name = "dark-dev"
+version = "1.0.0"
+authors = ["rezzt <hi@rezzt.dev>"]
+enabled = true
+ratio = 0.93
+released = 2024-01-01T00:00:00Z
+
+[dependencies.shiki]
+version = "^3.23"
+features = ["a", "b"]
+
+[[tool.slots]]
+name = 'ink'
+value = 0xEEEEEE

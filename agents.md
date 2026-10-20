@@ -21,7 +21,7 @@ especificación.
 | `src/workbench.mjs` | `workbench(roles)`: claves de color de la interfaz, agrupadas por zona. |
 | `src/syntax/scopes.mjs` | roles de sintaxis → scopes textmate, y tokens semánticos → rol. |
 | `src/syntax/variants.mjs` | estilo de cada rol en `darkDev` y `darkDevMono`. |
-| `scripts/` | `build.mjs`, `check-contrast.mjs` y `preview.mjs`. |
+| `scripts/` | `build.mjs`, `check-contrast.mjs`, `check-syntax.mjs`, `preview.mjs` y `languages.mjs`. |
 | `themes/` | json generados. **no se editan a mano.** |
 | `samples/` | ficheros de muestra para revisar el resaltado (no se empaquetan). |
 
@@ -50,7 +50,7 @@ especificación.
    pasan".
 3. si cambias claves de la interfaz, comprueba que existen en la versión actual de vs code (las
    claves inventadas se ignoran sin avisar).
-4. si cambias la sintaxis, `npm run preview` y revisa `preview/*.html`, o pulsa `f5`.
+4. si cambias la sintaxis, `npm run check:syntax` (tiene que terminar en "todas las palabras tienen estilo"), `npm run preview` y revisa `preview/*.html`, o pulsa `f5`. un lenguaje nuevo lleva su muestra en `samples/` y su entrada en `scripts/languages.mjs`.
 5. añade el cambio a `## SIN PUBLICAR / UNRELEASED` de `changelog.md`.
 
 ---

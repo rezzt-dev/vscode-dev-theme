@@ -1,0 +1,25 @@
+# muestra de yaml para revisar el resaltado de dark dev
+name: build
+on:
+  push:
+    branches: [main]
+env: &defaults
+  NODE_VERSION: 20
+  DEBUG: false
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env: *defaults
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Instalar"
+        run: |
+          npm ci
+          npm test
+      - name: Valores
+        with: { retries: 3, ratio: 0.5, empty: null, when: ~ }
+        if: ${{ github.ref == 'refs/heads/main' }}
+---
+list:
+  - 'comillas simples'
+  - 2024-01-01

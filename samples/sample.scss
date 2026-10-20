@@ -1,0 +1,23 @@
+// muestra de scss para revisar el resaltado de dark dev
+@use 'sass:math';
+@import 'palette';
+
+$ink: #eeeeee;
+$steps: (5, 10, 20);
+
+@mixin ramp($step, $base: $ink) {
+  color: rgba($base, math.div($step, 100));
+}
+
+@function double($n) { @return $n * 2; }
+
+.slot {
+  @include ramp(50);
+  padding: double(4px);
+  &:hover { color: darken($ink, 10%); }
+  &__title { font: 600 1rem/1.5 'Space Grotesk', sans-serif; }
+  @each $s in $steps {
+    .step-#{$s} { opacity: math.div($s, 100); }
+  }
+  @media (min-width: 640px) and (prefers-color-scheme: dark) { display: grid !important; }
+}

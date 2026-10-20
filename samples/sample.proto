@@ -1,0 +1,25 @@
+// muestra de protobuf para revisar el resaltado de dark dev
+syntax = "proto3";
+
+package dev.rezzt.theme;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "rezzt.dev/theme";
+
+enum Mode {
+  MODE_UNSPECIFIED = 0;
+  MODE_DARK = 1;
+}
+
+message Slot {
+  string name = 1;
+  repeated int32 steps = 2 [packed = true];
+  map<string, uint32> values = 3;
+  google.protobuf.Timestamp created = 4;
+  oneof kind { bool mono = 5; Mode mode = 6; }
+}
+
+service Themes {
+  rpc Get (Slot) returns (stream Slot);
+}

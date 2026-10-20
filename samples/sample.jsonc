@@ -1,0 +1,9 @@
+// muestra de jsonc para revisar el resaltado de dark dev
+{
+  /* ajustes del editor */
+  "workbench.colorTheme": "Dark Dev",
+  "editor.fontSize": 13,
+  "editor.minimap.enabled": false,
+  "files.exclude": { "**/.git": true, "node_modules": null },
+  "editor.rulers": [80, 120],
+}

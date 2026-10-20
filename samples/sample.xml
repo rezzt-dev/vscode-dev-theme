@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- muestra de xml para revisar el resaltado de dark dev -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <dependency scope="test" optional="true">
+    <groupId>dev.rezzt</groupId>
+    <version>1.0.0 &amp; más</version>
+    <![CDATA[ texto <crudo> ]]>
+  </dependency>
+  <empty attr='x'/>
+</project>

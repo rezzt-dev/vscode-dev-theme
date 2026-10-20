@@ -76,6 +76,7 @@ las dos variantes comparten exactamente la misma interfaz.
 | etiquetas html/xml | `#5980CD` | `tag` |
 | atributos | `#8D76B5` | `attribute` |
 | pseudo, decoradores | `#818CF8` | `pseudo`, `decorator` |
+| macros y preprocesador | `#AB61D5` | `macro` |
 | enlaces | `#3785CA` | `link` |
 
 ---
@@ -138,6 +139,8 @@ el tema se genera a partir de tokens; los ficheros de `themes/` no se editan a m
 | `scripts/build.mjs` | genera `themes/*.json` y valida que todos los valores sean hex. |
 | `scripts/check-contrast.mjs` | comprueba el contraste wcag de la sintaxis y los pares de la interfaz. |
 | `scripts/preview.mjs` | renderiza `samples/` con las dos variantes en `preview/*.html`. |
+| `scripts/check-syntax.mjs` | lista los tokens de `samples/` que caen en el color por defecto (falta una regla). |
+| `scripts/languages.mjs` | lenguajes de `samples/`: extensión → gramática. |
 
 ```sh
 npm run build     # regenera themes/

@@ -1,0 +1,16 @@
+// muestra de sass para revisar el resaltado de dark dev
+@use 'sass:math'
+$ink: #eeeeee
+$steps: 5, 10, 20
+
+=ramp($step, $base: $ink)
+  color: rgba($base, math.div($step, 100))
+
+.slot
+  +ramp(50)
+  padding: 4px
+  &:hover
+    color: darken($ink, 10%)
+  @each $s in $steps
+    .step-#{$s}
+      opacity: math.div($s, 100)

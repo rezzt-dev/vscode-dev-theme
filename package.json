@@ -49,6 +49,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "check": "node scripts/check-contrast.mjs",
+    "check:syntax": "node scripts/check-syntax.mjs",
     "test": "npm run build && npm run check",
     "preview": "node scripts/preview.mjs",
     "icon": "rsvg-convert -w 256 -h 256 images/icon.svg -o images/icon.png",
