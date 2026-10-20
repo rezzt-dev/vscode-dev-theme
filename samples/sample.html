@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>dark dev</title>
+    <link rel="stylesheet" href="sample.css" />
+  </head>
+  <body class="app" data-theme="dark-dev">
+    <!-- barra lateral -->
+    <nav id="sidebar">
+      <a class="nav-item" href="#notas" aria-current="page">notas &amp; tareas</a>
+    </nav>
+    <button class="pill" type="button" disabled>guardar</button>
+    <script>
+      document.querySelector('.pill').addEventListener('click', () => console.log(42));
+    </script>
+  </body>
+</html>

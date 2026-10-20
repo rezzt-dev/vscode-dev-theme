@@ -1,0 +1,62 @@
+{
+  "name": "dark-dev-theme",
+  "displayName": "Dark Dev",
+  "description": "Pure black, ink-on-black theme from Enki: monochrome Swiss editorial brutalism with colour reserved for state.",
+  "version": "1.0.0",
+  "publisher": "rezzt",
+  "author": {
+    "name": "rezzt",
+    "url": "https://rezzt.dev"
+  },
+  "homepage": "https://rezzt.dev",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "dark",
+    "black",
+    "oled",
+    "amoled",
+    "monochrome",
+    "minimal",
+    "brutalist",
+    "dark dev",
+    "enki"
+  ],
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#000000",
+    "theme": "dark"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "Dark Dev",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dark-dev-color-theme.json"
+      },
+      {
+        "label": "Dark Dev Mono",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dark-dev-mono-color-theme.json"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check-contrast.mjs",
+    "test": "npm run build && npm run check",
+    "preview": "node scripts/preview.mjs",
+    "icon": "rsvg-convert -w 256 -h 256 images/icon.svg -o images/icon.png",
+    "package": "npm test && npx --yes @vscode/vsce package --allow-missing-repository --skip-license",
+    "publish:vscode": "npm test && npx --yes @vscode/vsce publish --allow-missing-repository --skip-license",
+    "publish:openvsx": "npm test && npx --yes ovsx publish"
+  },
+  "devDependencies": {
+    "shiki": "^3.23.0"
+  }
+}

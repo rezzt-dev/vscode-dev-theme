@@ -1,0 +1,12 @@
+# dependencias
+node_modules/
+
+# paquetes generados
+*.vsix
+
+# vista previa generada
+preview/
+
+# sistema operativo
+.DS_Store
+Thumbs.db

@@ -1,0 +1,13 @@
+{
+  "id": "dark-dev",
+  "name": "Dark Dev",
+  "appearance": "dark",
+  "builtIn": true,
+  "slots": 19,
+  "accent": null,
+  "colors": {
+    "danger": "#EF4444",
+    "success": "#22C55E",
+    "highlight": "#EAB308"
+  }
+}

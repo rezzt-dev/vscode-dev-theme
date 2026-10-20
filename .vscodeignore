@@ -1,0 +1,13 @@
+.docs/**
+.vscode/**
+src/**
+scripts/**
+samples/**
+images/icon.svg
+agents.md
+claude.md
+node_modules/**
+**/*.vsix
+.gitignore
+preview/**
+package-lock.json
