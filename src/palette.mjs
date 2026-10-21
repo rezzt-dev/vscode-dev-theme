@@ -49,6 +49,22 @@ export const data = {
   indigo: '#818CF8', // capa de recordatorios
 };
 
+// paleta "nexus dark" (catppuccin mocha): copia exacta para la sintaxis de la variante a color.
+export const nexus = {
+  text: '#CDD6F4',
+  subtext: '#A6ADC8',
+  comment: '#7F849C',
+  pink: '#F38BA8',
+  yellow: '#F9E2AF',
+  peach: '#FAB387',
+  green: '#A6E3A1',
+  flamingo: '#F5C2E7',
+  blue: '#89B4FA',
+  lavender: '#B4BEFE',
+  mauve: '#CBA6F7',
+  sky: '#89DCEB',
+};
+
 // colores de estado de la base dark: variantes más claras para los bright del terminal.
 export const baseDark = {
   danger: '#FF9494',

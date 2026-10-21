@@ -2,7 +2,7 @@
 // la estructura del código (palabras clave, funciones, puntuación) va siempre en la rampa de tinta;
 // lo único que cambia entre variantes es si los literales y los tipos llevan color de datos.
 
-import { data, inkSolid, slots } from '../palette.mjs';
+import { inkSolid, nexus as n, slots } from '../palette.mjs';
 
 const s = (foreground, fontStyle = '') => ({ foreground, fontStyle });
 
@@ -18,8 +18,10 @@ const shared = {
   embedded: s(slots.ink),
   function: s(slots.ink),
   variable: s(inkSolid[90]),
+  supportVariable: s(inkSolid[90]),
   parameter: s(inkSolid[90], 'italic'),
   property: s(inkSolid[80]),
+  boolean: s(slots.accent, 'italic'),
   label: s(slots.textSecondary, 'italic'),
 
   invalid: s(slots.danger, 'underline'),
@@ -39,26 +41,65 @@ const shared = {
   diffRange: s(slots.textSecondary, 'italic'),
 };
 
-// dark dev: la paleta de datos de enki para literales, tipos y marcado.
+// dark dev: copia exacta de la sintaxis de "nexus dark" (catppuccin mocha). mapa completo:
+// no hereda color de `shared` (que es la tinta de la variante mono); cada rol lleva su hex de nexus.
 export const darkDev = {
-  ...shared,
-  string: s(data.green),
-  stringEscape: s(slots.highlight),
-  regexp: s(data.amber),
-  number: s(data.amber),
-  constantLanguage: s(data.amber),
-  macro: s(data.violet),
-  constant: s(data.magenta),
-  type: s(data.cyan),
-  typeParameter: s(data.cyan, 'italic'),
-  self: s(data.plum, 'italic'),
-  namespace: s(data.steel),
-  tag: s(data.blue),
-  attribute: s(data.mauve, 'italic'),
-  pseudo: s(data.indigo),
-  decorator: s(data.indigo),
-  inlineCode: s(data.green),
-  link: s(data.sky, 'underline'),
+  comment: s(n.comment, 'italic'),
+  commentDoc: s(n.comment, 'italic'),
+
+  // estructura: palabras clave, almacenamiento y etiquetas en rosa cursiva; operadores en azul.
+  keyword: s(n.pink, 'italic'),
+  keywordControl: s(n.pink, 'italic'),
+  macro: s(n.pink, 'italic'),
+  storage: s(n.pink, 'italic'),
+  operator: s(n.blue),
+  punctuation: s(n.text),
+  embedded: s(n.text),
+
+  // literales y constantes.
+  string: s(n.green),
+  stringEscape: s(n.flamingo),
+  regexp: s(n.green),
+  number: s(n.flamingo),
+  boolean: s(n.flamingo),
+  constantLanguage: s(n.flamingo),
+  constant: s(n.yellow),
+
+  // nombres: funciones en melocotón, tipos en amarillo, globales en cielo.
+  function: s(n.peach),
+  type: s(n.yellow),
+  typeParameter: s(n.yellow),
+  variable: s(n.subtext),
+  supportVariable: s(n.sky),
+  parameter: s(n.subtext),
+  property: s(n.text),
+  self: s(n.mauve, 'italic'),
+  namespace: s(n.lavender),
+
+  // marcado y plantillas.
+  tag: s(n.pink),
+  attribute: s(n.peach),
+  pseudo: s(n.peach),
+  decorator: s(n.peach),
+  label: s(n.subtext),
+
+  invalid: s(n.pink, 'underline'),
+  deprecated: s(n.pink, 'italic underline'),
+
+  heading: s(n.pink, 'bold'),
+  bold: s(n.text, 'bold'),
+  italic: s(n.text, 'italic'),
+  strike: s(n.subtext, 'strikethrough'),
+  inlineCode: s(n.green),
+  link: s(n.blue),
+  quote: s(n.subtext, 'italic'),
+  list: s(n.subtext),
+  separator: s(n.comment),
+
+  inserted: s(n.green),
+  deleted: s(n.pink),
+  changed: s(n.yellow),
+  diffRange: s(n.blue),
 };
 
 // dark dev mono: solo tinta. el color queda reservado al estado (errores, diffs).

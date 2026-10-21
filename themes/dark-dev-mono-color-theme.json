@@ -1137,15 +1137,28 @@
       "name": "constantLanguage",
       "scope": [
         "constant.language",
-        "constant.language.boolean",
-        "constant.language.null",
-        "constant.language.undefined",
-        "variable.language.null",
         "support.constant",
         "support.constant.property-value",
         "support.constant.font-name",
         "support.constant.color",
         "invalid.deprecated.color.system.css"
+      ],
+      "settings": {
+        "foreground": "#CCCCCC",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "boolean",
+      "scope": [
+        "constant.language.boolean",
+        "constant.language.boolean.true",
+        "constant.language.boolean.false",
+        "constant.language.null",
+        "constant.language.undefined",
+        "constant.language.nan",
+        "constant.language.infinity",
+        "variable.language.null"
       ],
       "settings": {
         "foreground": "#CCCCCC",
@@ -1255,8 +1268,6 @@
         "variable.other.readwrite",
         "meta.definition.variable variable",
         "variable.other.local",
-        "support.variable",
-        "support.other.variable",
         "entity.name.variable",
         "variable.other.normal",
         "variable.other.global",
@@ -1264,6 +1275,23 @@
         "variable.other.alias",
         "punctuation.definition.variable",
         "meta.definition.variable.name"
+      ],
+      "settings": {
+        "foreground": "#D7D7D7",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "supportVariable",
+      "scope": [
+        "support.variable",
+        "support.other.variable",
+        "support.variable.dom",
+        "support.variable.property.dom",
+        "support.variable.object.process",
+        "support.variable.object.node",
+        "variable.language.arguments",
+        "support.constant.handlebars"
       ],
       "settings": {
         "foreground": "#D7D7D7",
@@ -1674,10 +1702,7 @@
       "foreground": "#C0C0C0",
       "fontStyle": "italic"
     },
-    "variable.defaultLibrary": {
-      "foreground": "#CCCCCC",
-      "fontStyle": "italic"
-    },
+    "variable.defaultLibrary": "#D7D7D7",
     "class.defaultLibrary": {
       "foreground": "#EEEEEE",
       "fontStyle": "italic"

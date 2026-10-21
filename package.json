@@ -9,6 +9,10 @@
     "url": "https://rezzt.dev"
   },
   "homepage": "https://rezzt.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rezzt-dev/vscode-dev-theme.git"
+  },
   "engines": {
     "vscode": "^1.75.0"
   },
