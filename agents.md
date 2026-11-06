@@ -1,4 +1,88 @@
-# AGENTS
+# VSCODE-DEV-THEME: REPOSITORY GUIDE
+
+dark dev and dark dev mono colour themes for visual studio code. this guide covers the repository; nested agent instructions apply within their own folders.
+
+## PROJECT OVERVIEW
+
+| property | verified value |
+| --- | --- |
+| repository | `rezzt-dev/vscode-dev-theme` |
+| active source | `./` |
+| development base for this change | `main` |
+| remote default branch | `main` |
+| version source | `package.json`: `1.0.0` |
+| continuous integration | no tracked github actions workflows |
+
+## TECHNOLOGY STACK
+
+- no dependency manifest is present; inspect the source files directly and do not assume an install command
+
+## PROJECT STRUCTURE
+
+- `changelog.md`
+- `images/`
+- `license.md`
+- `package-lock.json`
+- `package.json`
+- `readme.md`
+- `samples/`
+- `scripts/`
+- `security.md`
+- `src/`
+- `themes/`
+
+management documentation lives in `.docs/manager.md`, `.docs/-github-guides/` and `.docs/repo-audit-and-fix.md`. keep this file and `claude.md` consistent.
+
+## BUILD, RUN AND TEST COMMANDS
+
+from `./`, the available package scripts are:
+
+| command | implementation |
+| --- | --- |
+| `npm run build` | `node scripts/build.mjs` |
+| `npm run check` | `node scripts/check-contrast.mjs` |
+| `npm run check:syntax` | `node scripts/check-syntax.mjs` |
+| `npm run test` | `npm run build && npm run check` |
+| `npm run preview` | `node scripts/preview.mjs` |
+| `npm run icon` | `rsvg-convert -w 256 -h 256 images/icon.svg -o images/icon.png` |
+| `npm run package` | `npm test && npx --yes @vscode/vsce package --allow-missing-repository --skip-license` |
+
+for application changes, run these checks from `./`:
+
+```bash
+npm test
+npm run check:syntax
+```
+
+## CODE STYLE AND ARCHITECTURAL DECISIONS
+
+edit source palette and syntax roles rather than generated themes; each new role must exist in both variants; keep all colour literals in src/palette.mjs. follow the existing formatter and naming of the changed module. verify manifest versions when dependencies change.
+
+## TESTING STRATEGY
+
+documentation-only changes require `git diff --check`, existing-path checks and a review of the staged file list. run module checks for application changes, with disposable data. report unavailable tooling and failed checks; never claim a check passed without running it.
+
+## SECURITY AND DEPLOYMENT
+
+keep credentials, local configuration, signing material and user data out of commits. do not print secret values while auditing. inspect configuration names and code references instead.
+
+existing legal and community files: `license.md`, `security.md`. when changing dependencies, permissions, storage or network services, review those files against the implementation. record missing policies as audit work; do not invent licence terms or ownership decisions.
+
+deployment, signing, store publication, migrations against hosted databases and repository settings require their own explicit request. this documentation task prepares management instructions and pull requests.
+
+## COMMON TASKS
+
+1. read the relevant module and its nearest agent instructions
+2. inspect the working tree and choose the smallest change that solves the request
+3. update the affected documentation and changelog with evidence from the diff
+4. run checks appropriate to the changed module and report their actual results
+5. for git operations, follow the manager and the digest below
+
+## EXISTING PROJECT CONVENTIONS
+
+the following project-specific context is retained from the previous guide. paths are relative to the active module when stated. for git operations, the manager and final digest supersede previous workflow examples.
+
+## AGENTS
 
 instrucciones para cualquier agente de ia (o persona) que trabaje en este repositorio.
 
@@ -52,175 +136,6 @@ especificación.
    claves inventadas se ignoran sin avisar).
 4. si cambias la sintaxis, `npm run check:syntax` (tiene que terminar en "todas las palabras tienen estilo"), `npm run preview` y revisa `preview/*.html`, o pulsa `f5`. un lenguaje nuevo lleva su muestra en `samples/` y su entrada en `scripts/languages.mjs`.
 5. añade el cambio a `## SIN PUBLICAR / UNRELEASED` de `changelog.md`.
-
----
-
-## FORMATO DE LAS SECCIONES DE `changelog.md`
-
-- cada versión es un `## [x.y.z] - aaaa-mm-dd`; lo pendiente va en `## SIN PUBLICAR / UNRELEASED`.
-- dentro, un bloque `### CASTELLANO` y otro `### ENGLISH` con el mismo contenido.
-- categorías cerradas y en este orden, omitiendo las vacías: `#### NUEVO` / `#### ADDED`,
-  `#### CAMBIOS` / `#### CHANGED`, `#### CORREGIDO` / `#### FIXED`, `#### ELIMINADO` /
-  `#### REMOVED`, `#### SEGURIDAD` / `#### SECURITY`.
-- un item por línea, en imperativo, con rutas e identificadores entre backticks.
-
----
-
-## COMMITS
-
-> cada vez que se vaya a crear un commit en este repositorio, se aplican estas reglas, se haya
-> pedido explícitamente o no.
-
-### FORMATO FIJO DEL TITULO
-
-```
-<prefijo> | <resumen corto en imperativo>
-```
-
-el separador es siempre espacio, barra vertical, espacio: ` | `. el `<prefijo>` es siempre una de
-estas cinco palabras, en minúsculas, y nunca se combinan ni se inventan otras nuevas:
-
-| prefijo | cuando usarlo |
-|---|---|
-| **update** | trabajo normal hacia adelante: se añade o mejora una funcionalidad, contenido o documento existente. es el prefijo por defecto. |
-| **fix** | se corrige un error o comportamiento incorrecto detectado durante el desarrollo, sin urgencia de publicación inmediata. |
-| **hotfix** | se corrige algo urgente que afecta a una versión ya publicada o a un bloqueo crítico. debe usarse solo cuando la corrección es realmente urgente. |
-| **changes** | cambios estructurales o no funcionales: reorganizar carpetas, renombrar ficheros, tocar configuración o tooling, dependencias. no añade funcionalidad ni corrige un bug. |
-| **changelog** | el único propósito del commit es editar `changelog.md` (por ejemplo, al cerrar una versión). |
-
-ejemplos de títulos correctos:
-
-```
-update | añadir vista previa de mapeo de columnas al asistente de importación csv
-fix | detección de duplicados fallando en filas con importes negativos
-hotfix | fallo al iniciar cuando falta el archivo de perfil de importación
-changes | reorganizar la documentación en la subcarpeta project-context
-changelog | cerrar la sección de changelog para la versión mvp fase 0
-```
-
-### FORMATO DE LA DESCRIPCION (CUERPO)
-
-- el cuerpo es siempre una lista de markdown no numerada: cada item empieza por `-`. nunca se usan
-  listas numeradas ni párrafos sueltos.
-- cada item es un bloque lógico en imperativo, escrito como una sola línea continua, sin saltos de
-  línea internos: no son estéticos ni útiles, deja que el cliente de git lo ajuste. no se dejan
-  líneas en blanco entre items.
-- usa markdown dentro de cada item: nombres de ficheros, rutas, comandos e identificadores siempre
-  entre backticks.
-- explica el qué y el por qué, no el detalle línea a línea.
-- cierra con una línea en blanco y la línea de atribución que corresponda al entorno.
-
-### COMO PRESENTAR EL RESULTADO
-
-al responder con el título y la descripción hay que usar bloques de código separados: uno para el
-título del commit y otro para el cuerpo del commit (más otro para el fragmento del changelog). nunca
-se juntan el título y el cuerpo en el mismo bloque.
-
----
-
-## PULL REQUESTS, MERGES Y RELEASES
-
-> cada vez que se vaya a abrir una pull request, hacer un merge o publicar una release en este
-> repositorio, se aplican estas reglas, se haya pedido explícitamente o no.
-
-este documento asume conocido el formato de `changelog.md` (sección "formato de las secciones de
-`changelog.md`" más arriba) y el de los commits (sección "commits" más arriba). no lo repite salvo
-lo estrictamente necesario.
-
-### PRINCIPIO GENERAL
-
-pull requests, merges y releases no inventan su propio formato: reusan literalmente el contenido y
-las reglas de estilo de `changelog.md`.
-
-- **minúsculas y sin acentos** en todo el contenido; los títulos/encabezados van en mayúsculas y sin
-  acentos.
-- **categorías cerradas**, las mismas cinco de `changelog.md` y en el mismo orden — nuevo, cambios,
-  corregido, eliminado, seguridad (added / changed / fixed / removed / security) — omitiendo la que
-  no tenga items.
-- **una línea por item**, en imperativo, con nombres de ficheros, rutas, comandos e identificadores
-  entre backticks.
-- las fechas usan el formato `aaaa-mm-dd`.
-
-la fuente de verdad es siempre `changelog.md`: antes de redactar una pr, un merge o una release, la
-sección `## SIN PUBLICAR / UNRELEASED` (o la versión ya cerrada correspondiente) debe estar
-actualizada. el contenido de pr, merge y release se extrae de ahí, no se redacta desde cero ni en
-paralelo.
-
-### 1. PULL REQUESTS
-
-hay dos tipos de pr en este repositorio:
-
-**pr de trabajo normal** (una rama `feature/...` o `fix/...` contra `testing-branch`, o cualquier pr
-que no cierra una versión): mismo formato que el título de un commit (sección "commits"):
-
-```
-<prefijo> | <resumen corto en imperativo>
-```
-
-**pr de publicación de versión** (`testing-branch` → `release-branch` / `main`, cierra una versión
-de `changelog.md`):
-
-```
-release version <x.y.z> - <resumen corto en imperativo>
-```
-
-el resumen corto resume las 2–3 entradas más relevantes de la versión.
-
-la descripción de cualquier pr es el bloque `### CASTELLANO` + `### ENGLISH` de la sección
-correspondiente de `changelog.md`, pegado tal cual, con sus encabezados `####` de categoría:
-
-```
-### CASTELLANO
-
-#### <categoria>
-- <cambio en una linea>
-
-### ENGLISH
-
-#### <category>
-- <same change, one line>
-```
-
-no se añaden párrafos sueltos, capturas de pantalla incrustadas como texto ni resúmenes adicionales
-fuera de la lista.
-
-### 2. COMMIT DE MERGE
-
-github genera el commit de merge a partir del título y la descripción de la pr automáticamente. por
-tanto, si la pr cumple la sección 1, el commit de merge ya cumple este formato sin trabajo adicional.
-
-- usa siempre **"create a merge commit"** al fusionar (nunca squash ni rebase): el historial de
-  commits individuales debe conservarse completo junto al resumen de la pr en el commit de merge.
-- si el merge se hace manualmente por git (`git merge --no-ff`), el mensaje del commit de merge se
-  redacta a mano siguiendo el mismo título y cuerpo que llevaría la pr equivalente.
-
-### 3. RELEASES DE GITHUB
-
-las releases de github son en inglés únicamente (no bilingües, a diferencia de `changelog.md` y de
-las pr): son la cara pública del proyecto de cara a usuarios que no necesariamente leen castellano.
-
-el título sigue el patrón:
-
-```
-v<x.y.z> — <resumen corto en ingles, minusculas, sin acentos>
-```
-
-el cuerpo reutiliza literalmente el bloque `### ENGLISH` de la versión cerrada en `changelog.md`,
-con sus categorías en mayúsculas y sin acentos. se omite la categoría que no tenga items.
-
-el tag de git asociado a la release es siempre `v<x.y.z>`.
-
-### FLUJO RESUMIDO
-
-1. durante el desarrollo, cada commit sigue la sección "commits" y cada cambio relevante se añade a
-   `## SIN PUBLICAR / UNRELEASED` en `changelog.md` en su categoría correspondiente.
-2. cada pr (normal o de versión) usa el título y la descripción definidos en la sección 1, extraídos
-   de `changelog.md`.
-3. al fusionar, se usa "create a merge commit" para que el commit de merge herede el formato de la
-   pr.
-4. al cerrar una versión: se renombra `## SIN PUBLICAR / UNRELEASED` a `## [x.y.z] - aaaa-mm-dd` en
-   `changelog.md` (commit con prefijo `changelog`), se abre la pr de publicación de versión y al
-   fusionarla se crea la release de github con el tag `v<x.y.z>`.
 
 ---
 
@@ -282,3 +197,64 @@ y las reglas de calidad que se aplican a todo el trabajo de este repositorio.
 
 el directorio `.docs/skills/` puede crecer con skills nuevas: comprueba siempre su contenido antes
 de empezar cualquier tarea de diseño o interfaz.
+
+## ADDITIONAL ENTRY-POINT CONVENTIONS
+
+## CLAUDE
+
+instrucciones específicas para claude code trabajando en este repositorio. las instrucciones
+completas del proyecto están en `agents.md`:
+
+@agents.md
+
+---
+
+## SKILLS
+
+al comenzar cualquier tarea que implique diseño visual, componentes de interfaz o revisión del tema,
+carga las skills del directorio `.docs/skills/` antes de escribir código:
+
+```
+.docs/skills/frontend-design/SKILL.md     — diseño de interfaces web
+.docs/skills/impeccable/reference/        — comandos de diseño y calidad visual
+```
+
+no empieces a implementar sin haberlas leído. si el directorio `.docs/skills/` tiene ficheros
+nuevos, léelos también: el catálogo de skills puede crecer.
+
+---
+
+## COMPORTAMIENTO
+
+- sigue siempre las reglas de commits, pull requests y markdown de `agents.md` aunque no se pidan
+  explícitamente.
+- antes de crear un rol de sintaxis nuevo, comprueba que `build.mjs` valida correctamente las dos
+  variantes de `variants.mjs`.
+- no edites `themes/*.json` a mano: esos ficheros los genera `npm test`.
+- si encuentras una clave de color inventada (no definida en `src/palette.mjs`), corrígela antes de
+  continuar.
+- ningún hex suelto fuera de `src/palette.mjs`.
+
+## COMMIT, PR, MERGE & RELEASE GUIDELINES
+
+read `.docs/manager.md` first, then the selected guide in `.docs/-github-guides/`. these files are versioned; this digest also works without opening them.
+
+| request | guide |
+| --- | --- |
+| commit title, body and changelog | `commit-guide.md`, `changelog-guide.md` |
+| pull request or merge | `pr-merge-guide.md`, `branching-guide.md` |
+| version and release | `release-guide.md`, `changelog-guide.md` |
+| permissions and sensitive data | `agent-rules.md` |
+
+- inspect `git status`, both diffs and recent history before describing changes
+- use `<prefix> | <imperative summary>` with `update`, `fix`, `hotfix`, `changes` or `changelog`; keep titles within 72 characters
+- write commit bodies as 2 to 6 markdown bullets, one logical change per line, with literal paths in backticks
+- never add authorship footers, automated attribution, signatures or generation notices; preserve the configured git identity
+- update `changelog.md` under `## SIN PUBLICAR / UNRELEASED` in matching `### CASTELLANO` and `### ENGLISH` sections
+- use the existing changelog category vocabulary and preserve language parity; describe only changes in the actual diff
+- summarize pull requests in 1 to 3 bullets per category and language, at most 110 characters per bullet
+- documentation and repository-management work targets `main`; the remote default is `main`; do not silently promote development work to the default branch
+- the authorization for a requested action remains valid throughout that task; creating a pull request includes pushing its branch, but does not authorize merging or publishing
+- use merge commits when a merge is requested; never force-push, rewrite published history or remove branches without an explicit instruction
+- releases use the approved version and an immutable tag on the verified release commit, with english notes from the closed changelog; do not create a release for documentation work
+- deliver requested titles, bodies and changelog fragments in separate code blocks; report executed actions with their commit hash or pull request link

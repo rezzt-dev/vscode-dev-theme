@@ -21,6 +21,8 @@
 - añadir el icono de la extensión y la configuración de `f5` para probar el tema en una ventana de desarrollo
 
 #### CAMBIOS
+
+- completar las guías de gestión y el contexto específico del proyecto; conservar las reglas técnicas y verificar las rutas
 - reescribir la variante `darkDev` en `src/syntax/variants.mjs` con el mapa completo de nexus dark (catppuccin mocha): cada rol lleva su hex de nexus sin heredar de `shared`, igualando visualmente al tema nexus dark
 - añadir `supportVariable` y `boolean` a `shared` en `src/syntax/variants.mjs` para que `darkDevMono` los herede con tinta correctamente
 - redirigir los tokens semánticos `variable.defaultLibrary` y `boolean` a los nuevos roles `supportVariable` y `boolean` en `src/syntax/scopes.mjs` (antes apuntaban a `constantLanguage`)
@@ -55,6 +57,8 @@
 - add the extension icon and the `f5` launch configuration to try the theme in a development window
 
 #### CHANGED
+
+- complete repository management guides and project-specific context; preserve technical rules and verify paths
 - rewrite the `darkDev` variant in `src/syntax/variants.mjs` with the full nexus dark (catppuccin mocha) colour map: each role carries its nexus hex without inheriting from `shared`, matching nexus dark visually
 - add `supportVariable` and `boolean` to `shared` in `src/syntax/variants.mjs` so `darkDevMono` inherits them correctly in ink
 - redirect the `variable.defaultLibrary` and `boolean` semantic tokens to the new `supportVariable` and `boolean` roles in `src/syntax/scopes.mjs` (previously pointing to `constantLanguage`)
