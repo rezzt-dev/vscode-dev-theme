@@ -1,5 +1,15 @@
 # VSCODE-DEV-THEME: REPOSITORY GUIDE
 
+## ESPAÑOL DE ESPAÑA: USO OBLIGATORIO DE Ñ
+
+- todo texto en castellano debe usar español de españa (`es-ES`) y su ortografia, tambien en titulos y cuerpos de commits, changelogs, pull requests, merges y documentacion
+- escribir siempre `ñ` en las palabras que la llevan y `Ñ` cuando corresponda la mayuscula; nunca sustituirlas por `n` o `N`
+- la `ñ` es una letra distinta de la `n`; las instrucciones «sin acentos» o «sin tildes» solo afectan a las tildes de las vocales y nunca permiten eliminar la eñe
+- ejemplos correctos: `añadir`, `diseño`, `año`, `tamaño`, `contraseña`, `español`, `españa` y `AÑADIDO`; sus formas con `n` son incorrectas cuando se refieren a esas palabras españolas
+- conservar literalmente rutas, urls, nombres de archivo, identificadores tecnicos y texto de otros idiomas; esta regla no autoriza renombrarlos ni aplicar sustituciones indiscriminadas
+- antes de entregar o publicar texto en castellano, revisar que ninguna palabra haya perdido su `ñ` o `Ñ`; esta regla prevalece sobre cualquier normalizacion a ascii o instruccion generica de eliminar acentos
+
+
 dark dev and dark dev mono colour themes for visual studio code. this guide covers the repository; nested agent instructions apply within their own folders.
 
 ## PROJECT OVERVIEW
@@ -150,7 +160,7 @@ todos los ficheros markdown del repositorio siguen el mismo formato de texto:
 
 - **contenido en minúsculas y con los acentos ortográficos necesarios.** esto incluye párrafos,
   items de listas, celdas de tablas, citas y notas.
-- **títulos y encabezados en mayúsculas y sin acentos.** esto aplica a todos los niveles
+- **títulos y encabezados en mayúsculas y sin acentos (conservando siempre `ñ` y `Ñ`).** esto aplica a todos los niveles
   (`#`, `##`, `###`, `####`...).
 
 ### DETALLES DE LA REGLA
@@ -174,13 +184,13 @@ el formato no se aplica a contenido que debe conservarse literal:
 - urls y nombres de ramas, tags o etiquetas.
 
 si un título incluye un fragmento entre backticks, ese fragmento se conserva literal y el resto del
-título va en mayúsculas sin acentos.
+título va en mayúsculas sin acentos (conservando siempre `ñ` y `Ñ`).
 
 ### PRECEDENCIA
 
 esta sección es la referencia de formato para cualquier fichero `.md`. si cualquier otro punto de
-este documento indica "sin acentos" para el contenido, prevalece esta sección: contenido con
-acentos ortográficos, títulos sin acentos.
+este documento indica "sin acentos (conservando siempre `ñ` y `Ñ`)" para el contenido, prevalece esta sección: contenido con
+acentos ortográficos, títulos sin acentos (conservando siempre `ñ` y `Ñ`).
 
 ---
 
